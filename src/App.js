@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Filter from './Filter.js';
+import LocationList from './LocationList.js';
+import Map from './Map.js';
 import './App.css';
 
 class App extends Component {
+  state = {
+    locations: [],
+    markers: [],
+    infoWindow: []
+  }
+
+  componentDidMount(){
+
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header className="header">
         </header>
+        <body>
+          <div id="map">
+            <Map locationsList={this.state.locations} />
+          </div>
+          <div id="info">
+            <Filter />
+            <LocationList locationsList={this.state.locations}/>
+            <p>Information thanks to Google Maps and Foursquare</p>
+          </div>
+        </body>
       </div>
     );
   }
