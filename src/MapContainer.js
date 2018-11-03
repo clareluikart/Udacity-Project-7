@@ -1,5 +1,6 @@
 import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import styles from './App.css';
 
 export class MapContainer extends React.Component {
   state = {
@@ -26,9 +27,9 @@ export class MapContainer extends React.Component {
 
   render() {
     const style = {
-      width: '70%',
-      height: '100%'
-    }
+       width: 'inherit',
+       height: 'inherit'
+     }
     return (
       <div id="map">
         <Map
