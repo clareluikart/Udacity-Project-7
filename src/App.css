@@ -1,5 +1,13 @@
-.App {
-  text-align: center;
+.all {
+  display: block;
+}
+
+#map {
+  width: 70%;
+}
+
+#info {
+  width: 30%;
 }
 
 .App-logo {
@@ -26,7 +34,19 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #map {
+    order: 0;
+    width: 100%;
+  }
+
+  #info {
+    width: 100%;
   }
 }
