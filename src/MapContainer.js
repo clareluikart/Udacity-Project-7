@@ -1,20 +1,25 @@
 import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import styles from './App.css';
 
 export class MapContainer extends React.Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
+    activeLocation: {}
   };
 
-  onMarkerClick = (props, marker, e) =>
+  componentWillReceiveProps = (props) => {
+    this.setState({activeLocation: this.props.activeLocation})
+  }
+
+  onMarkerClick = (props, marker, e) =>{
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
+  }
 
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
@@ -27,12 +32,14 @@ export class MapContainer extends React.Component {
 
   render() {
     const style = {
-       width: 'inherit',
-       height: 'inherit'
+       width: '100%',
+       height: '100%'
      }
     return (
       <div id="map">
         <Map
+          role='application'
+          aria-label='map'
           style={style}
           google={this.props.google}
           zoom={17}
@@ -42,8 +49,8 @@ export class MapContainer extends React.Component {
           }}
         >
         {this.props.locationsList.map(location => {
-          return (
-            <Marker onClick={this.onMarkerClick} name={location.name} position={location.position} key={location.name} />
+            return (
+              <Marker onClick={this.onMarkerClick} name={location.name} position={location.position} key={location.name} Animation={this.props.google.maps.Animation.DROP} />
           );
         })}
           <InfoWindow onClose={this.onInfoWindowClose}
