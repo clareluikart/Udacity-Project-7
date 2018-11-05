@@ -62,7 +62,6 @@ class App extends Component {
   }
 
   startMarkerAnimation = (name) => {
-    console.log(this.state.locations.filter(location => location.name === name)[0])
     this.setState({activeLocation: (this.state.locations.filter(location => location.name === name)[0])})
   }
 

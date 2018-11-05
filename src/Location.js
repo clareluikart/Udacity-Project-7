@@ -8,9 +8,8 @@ export default class Location extends React.Component {
   }//https://stackoverflow.com/questions/49166453/react-redux-cannot-access-props-from-method-in-onclick
 
   state = {
-    tip: ""
+    address: ''
   }
-
   // handleSuccess = (asyncRequestObject) => {
   //   console.log("here")
   //   const data = JSON.stringify(asyncRequestObject.responseText);
@@ -38,13 +37,14 @@ export default class Location extends React.Component {
     // .catch(function(error){
     //     console.log(error);
     // });
+    this.setState({address: this.props.location.address})
   }
 
   render() {
     return (
       <div>
         <button onClick={this.onClick}>{this.props.location.name}</button>
-        <p>{this.state.tip}</p>
+        <p>{this.state.address}</p>
       </div>
     );
   }
