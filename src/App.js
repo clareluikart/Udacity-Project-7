@@ -91,9 +91,10 @@ class App extends Component {
       <div id="app">
         <MapContainer id="map" activeLocation={this.state.activeLocation} locationsList={this.state.filteredList} />
         <div id="info">
+          <h1>Best of Alameda</h1>
           <Filter onChange={this.filterUpdate} value={"All"}/>
           <LocationList startMarkerAnimation={this.startMarkerAnimation} locationsList={this.state.filteredList}/>
-          <p>Information thanks to Google Maps and Foursquare</p>
+          <p>Maps thanks to Google Maps and myjson.com</p>
         </div>
       </div>
     );

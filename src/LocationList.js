@@ -5,7 +5,7 @@ export default class LocationList extends React.Component {
   state = {}
   render() {
     return (
-      <ul className="books-grid">
+      <ul>
         {this.props.locationsList.map(location => { //got help for this part from @drunkenkismet on Slack
           return (
             <li key={location.name}>
