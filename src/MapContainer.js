@@ -6,7 +6,7 @@ export class MapContainer extends React.Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {},
+    selectedPlace: {}
   };
 
   componentWillReceiveProps = props => {
@@ -30,21 +30,9 @@ export class MapContainer extends React.Component {
     }
   };
 
-  tempArr = [];
-
   pushMarker = location => { //significant help from @drunkenkismet on slack
     if(location.name===this.props.activeLocation.name){
-    this.tempArr.push( //https://github.com/fullstackreact/google-maps-react/issues/201
-      <Marker
-        onClick={this.onMarkerClick}
-        name={location.name}
-        position={location.position}
-        key={location.name}
-        icon={highlight}
-        Animation={this.props.google.maps.Animation.DROP}
-      />
-    );
-    return (
+    return ( //https://github.com/fullstackreact/google-maps-react/issues/201
       <Marker
         onClick={this.onMarkerClick}
         name={location.name}
@@ -55,15 +43,6 @@ export class MapContainer extends React.Component {
       />
     );
   }else{
-    this.tempArr.push(
-      <Marker
-        onClick={this.onMarkerClick}
-        name={location.name}
-        position={location.position}
-        key={location.name}
-      />
-    );
-
     return (
       <Marker
         onClick={this.onMarkerClick}
@@ -71,21 +50,21 @@ export class MapContainer extends React.Component {
         position={location.position}
         key={location.name}
       />
-    );
+  );
   }
   };
 
   render() {
     const style = {
-      width: "100%",
+      width: "70%",
       height: "100%"
     };
     return (
       <div id="map">
         <Map
+          style={style}
           role="application"
           aria-label="map"
-          style={style}
           google={this.props.google}
           zoom={17}
           initialCenter={{
