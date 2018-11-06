@@ -1,6 +1,7 @@
 import React from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import highlight from "./highlight.png" //https://stackoverflow.com/questions/43823289/how-to-import-image-svg-png-in-a-react-component
+import NoMap from "./NoMap.js"
 
 export class MapContainer extends React.Component {
   state = {
@@ -56,7 +57,7 @@ export class MapContainer extends React.Component {
 
   render() {
     const style = {
-      width: "70%",
+      width: "100%",
       height: "100%"
     };
     return (
@@ -66,10 +67,10 @@ export class MapContainer extends React.Component {
           role="application"
           aria-label="map"
           google={this.props.google}
-          zoom={17}
+          zoom={16}
           initialCenter={{
-            lat: 37.765115,
-            lng: -122.243106
+            lat: 37.769070,
+            lng: -122.242940
           }}>
           {this.props.locationsList.map(location => this.pushMarker(location))}
           <InfoWindow
@@ -86,5 +87,5 @@ export class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyByVeqAjYY4YXDffYL1rgAKSot8XqCc1oQ"
+  apiKey: "AIzaSyByVeqAjYY4YXDffYL1rgAKSot8XqCc1oQ", LoadingContainer: NoMap //learned about this property from Doug Brown walkthrough
 })(MapContainer);

@@ -8,7 +8,8 @@ class App extends Component {
   state = {
     locations: [],
     filteredList: [],
-    activeLocation: {}
+    activeLocation: {},
+    error: ""
   }
 
   startMarkerAnimation = (name) => {
@@ -29,9 +30,11 @@ class App extends Component {
     .then(response => response.json()).then((data) => {
       this.setState({filteredList: data}); //got help from Laurette L on slack with the API
       this.setState({locations: data});
+      this.setState({error: ""});
     })
     .catch(function(error){
         console.log(error);
+        this.setState({error: "Could not load locations"});
     });
   }
 
@@ -45,6 +48,7 @@ class App extends Component {
           <h1>Best of Alameda</h1>
           <Filter onChange={this.filterUpdate} value={"All"}/>
           <LocationList startMarkerAnimation={this.startMarkerAnimation} locationsList={this.state.filteredList}/>
+          <p>{this.state.error}</p>
           <p>Maps thanks to Google Maps and locations thanks to myjson.com</p>
         </div>
       </div>
